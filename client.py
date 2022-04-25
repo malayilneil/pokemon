@@ -26,10 +26,7 @@ class MyClient (discord.Client):
         self.data = pokemon.DataManager()
     
     async def get_channels(self):
-        channels = []
-        for channel_ID in config.SPAM_CHANNELS:
-            channels.append(self.get_channel(channel_ID))
-        return channels
+        return [self.get_channel(channel_ID) for channel_ID in config.SPAM_CHANNELS]
 
     @tasks.loop(seconds=3)
     async def spammer (self):
